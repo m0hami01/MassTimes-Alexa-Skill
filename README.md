@@ -23,6 +23,41 @@ First create an Alexa Skill at https://developer.amazon.com/ using the Alexa Ski
 * Permissions: Device Address -> Country & Postal Code Only
 
 ## AWS Lambda Function
+Create a free account at aws.amazon.com and go into the Lambda page. Create a Python 2.7 Lambda Function. The ARN will be visible in the upper right of the page. Use this in the Configuration tab of the Getting Started guide. Enter the following into each tab:
+
+### Code
+*See _Upload Code to Lambda Function_ section below once the Lambda Function is setup*
+### Configuration
+* Runtime: Python 2.7
+* Handler: `lambda_function.lambda_handler`
+* Role: Choose and existing role
+* Existing Role: `lambda_basic_execution_mass_times`
+* Description: `Returns Mass Times and Church Information`
+#### Advanced
+* Memory (MB): 128
+* Timeout: 0 min; 10 sec
+* VPC: No VPC
+### Triggers
+This should be set up to use the Alexa Skills Kit already.
+
+## Uploading Code to Lambda Function
+First, zip your src folder in this project. On Mac/Linux run the following:
+```
+cd src
+zip -r ../lambda.zip .
+```
+Then go into the Code tab of the Lambda Function and select Upload a .zip file and upload lambda.zip. Then select Save at the top of the page. 
+
+*If anyone wants to make a script to automate this, please do this!*
+
+## Test from the Alexa Skill page
+Go to the Test tab and make sure the skill is Enabled for testing on your account. This will allow you to use any Alexa-enabled device on your account to test your skill.
+
+Use the Service Simulator and enter the following phrase:
+
+> When are mass times in Seattle Washington?
+
+Click Ask MassTimes.org and you should receive a JSON response. If you ask your Alexa-enabled device "Ask Mass Times for mass times in Seattle, Washington" you should hear her respond with the `response.outputSpeech.text` from the JSON response.  
 
 ## MassTimes API
 Here is a link to the API information: http://apiv4.updateparishdata.org/Default.htm
